@@ -1,34 +1,15 @@
-// [문제] main을 수정하지 않고 의도대로 실행되게
-// change함수를 선언하고 정의하라
+// [문제] 가장 큰 수를 찾아 화면에 출력한다.
 
+
+use rand::Rng;
 
 fn main() {
-    let mut a = Dog { data: 1 };
-    let mut b = Dog { data: 2 };
-
-    println!("{:?}, {:?}", a, b);
-
-    change(&mut a, &mut b);
-
-    println!("{:?}, {:?}", a, b);
-}
-
-
-#[derive(Debug)]
-struct Dog {
-    data: i32
-}
-
-impl Clone for Dog {
-    fn clone(&self) -> Dog {
-        Dog {
-            data: self.data
-        }
+    let mut a: [i32;1000] = [0;1000];
+    for num in a.iter_mut() {
+        *num = rand::thread_rng().gen_range(1000..9999);
+        print!("{:8}", num);
     }
-}
 
-fn change<T: Clone>(a: &mut T, b: &mut T) {
-    let temp = a.clone();
-    *a = b.clone();
-    *b = temp;
+
+    println!("\n{}", a.iter().max().unwrap());
 }
