@@ -4,12 +4,22 @@
 use rand::Rng;
 
 fn main() {
-    let mut a: [i32;1000] = [0;1000];
+    let mut a = [0;1000];
     for num in a.iter_mut() {
-        *num = rand::thread_rng().gen_range(1000..9999);
+        *num = rand::thread_rng().gen_range(1000..=9999);
         print!("{:8}", num);
     }
 
+    println!("\n\n");
 
-    println!("\n{}", a.iter().max().unwrap());
+
+    let mut max = i32::MIN;
+    for num in a.iter() {
+        if max < *num {
+            max = *num;
+        }
+    }
+    println!("max: {}", max);
+
+    println!("max: {}", a.iter().max().unwrap());
 }
