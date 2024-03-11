@@ -6,7 +6,7 @@ fn main() {
     let mut a = [0;1000];
 
     for num in a.iter_mut() {
-        *num = rand::thread_rng().gen_range(1000..9999);
+        *num = rand::thread_rng().gen_range(1000..=9999);
         print!("{:8}", num);
     }
 
