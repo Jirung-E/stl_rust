@@ -1,9 +1,6 @@
 fn main() {
-    let mut a = [0;100];
+    let mut a = (1..=100).collect::<Vec<_>>();
 
-    a.iter_mut().enumerate().for_each(|(i, num)| *num = i+1);
-
-    for num in a.iter() {
-        print!("{:8}", num);
-    }
+    a.iter().for_each(|x| println!("{}", x));
+    println!("sum: {}", a.iter().sum::<i32>());
 }
