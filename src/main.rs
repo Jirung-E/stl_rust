@@ -1,22 +1,23 @@
-use rand::Rng;
+use std::fs;
 
 fn main() {
-    let d1 = (0..100)
-        .map(|_| rand::thread_rng().gen_range(0..100))
-        .collect::<Vec<i32>>();
-    println!("{:?}", d1);
+    // [문제] "stl.cpp"에 있는 알파벳 소문자의 출현 횟수를 다음과 같이 출력하라
+    // a - 20
+    // b - 3
+    // c - 1
+    // ...
+    // z - 2
 
-    let d2 = (0..10)
-        .map(|_| {
-            (0..10)
-                .map(|_| rand::thread_rng().gen_range(0..100))
-                .collect::<Vec<i32>>()
-        })
-        .collect::<Vec<Vec<i32>>>();
-    for i in d2.iter() {
-        for k in i.iter() {
-            print!("{:4}", k);
-        }
-        println!();
+    let file = fs::read_to_string("src/main.rs")
+        .expect("파일을 읽을 수 없습니다.");
+
+    let mut counts = vec![0; 'z' as usize - 'a' as usize + 1];
+
+    file.chars()
+        .filter(|c| c.is_lowercase())
+        .for_each(|c| counts[c as usize - 'a' as usize] += 1);
+
+    for (i, count) in counts.iter().enumerate() {
+        println!("{} - {}", (i as u8 + 'a' as u8) as char, count);
     }
 }
