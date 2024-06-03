@@ -1,7 +1,10 @@
 fn main() {
-    let a = vec![1, 2, 3, 4];
-    let b = vec![5, 6, 7, 8];
+    let v: [i32; 5] = [1, 3, 5, 7, 9];
 
-    let v = [a, b].concat();
-    println!("{:?}", v);
+    if v.iter().all(|x| { x & 1 == 1 }) {
+        println!("모두 홀수");
+    }
+    else {
+        println!("모두 홀수인 것은 아니다.");
+    }
 }
