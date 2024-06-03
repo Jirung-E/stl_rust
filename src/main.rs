@@ -1,9 +1,9 @@
-use rand::{seq::IteratorRandom, thread_rng}; // 0.6.1
-
 fn main() {
-    let mut rng = thread_rng();
-    let v = vec![1, 2, 3, 4, 5, 6, 7, 8, 9];
-    let sample = v.iter().choose_multiple(&mut rng, 5);
+    let mut v = vec![3, 1, 4, 1, 5, 9, 2, 6];
+    let (even, odd): (Vec<_>, Vec<_>) = v
+        .into_iter()
+        .partition(|n| n % 2 == 0);
 
-    println!("{:?}", sample);
+    println!("{:?}", even);
+    println!("{:?}", odd);
 }
