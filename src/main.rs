@@ -1,14 +1,25 @@
+use rand::seq::SliceRandom;
 
 fn main() {
-    println!("{}", add(1, 2));
-    println!("{}", add(1.1, 2.2));
-    // println!("{}", add("Hello", " World"));
-}
+    let mut v: Vec<i32> = (0..100).collect();
 
-fn add<T>(a: T, b: T) -> T
-where
-    T: std::ops::Add<Output = T>,
-{
-    a + b
-}
+    for num in v.iter() {
+        print!("{:4}", num);
+    }
+    println!();
+    println!();
 
+    v.shuffle(&mut rand::thread_rng());
+
+    for num in v.iter() {
+        print!("{:4}", num);
+    }
+    println!();
+    println!();
+
+    v.sort();
+
+    for num in v.iter() {
+        print!("{:4}", num);
+    }
+}
