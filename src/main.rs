@@ -1,35 +1,9 @@
-use rand::Rng;
-use rand::seq::SliceRandom;
+use std::iter;
 
 fn main() {
-    let mut v: Vec<Dog> = Vec::from_iter((0..100).map(|_| Dog::new()));
-
-    for dog in &v {
-        println!("{} --- {}", dog.n, dog.c);
-    }
-    println!();
-    println!();
-
-    v.sort_by_key(|dog| dog.n);
-
-    for dog in &v {
-        println!("{} --- {}", dog.n, dog.c);
-    }
-    println!();
-    println!();
-}
-
-
-struct Dog {
-    n: i32,
-    c: char,
-}
-
-impl Dog {
-    fn new() -> Dog {
-        Dog {
-            n: rand::thread_rng().gen_range(1..10),
-            c: rand::thread_rng().gen_range('a'..='z'),
-        }
-    }
+    iter::successors(Some(0), |i| Some(i + 1))
+        .take(10)
+        .for_each(|i| {
+            println!("{}", i);
+        });
 }
